@@ -5,6 +5,11 @@ A remote control and remote scripting solution, built with .NET 5, Blazor, Signa
 ![GitHub Build](https://github.com/lucent-sea/Remotely/workflows/GitHub%20Build/badge.svg)
 
 
+> ## Repo is "On Pause"
+> I will soon be starting a new job and moving my family into a new house.  Until I get settled in, the repo will be archived.  This is for my own peace of mind, as it's rather stressful to see requests/issues come in when I don't have time to address them.
+>
+> Once I'm ready to resume the project, the archival will be removed.
+
 ## Donations
 If this project has benefited you in some way, or if you just want to show appreciation, please consider donating to a charity.
 
@@ -33,6 +38,8 @@ Hosting a Remotely server requires running an ASP.NET Core web app behind IIS (W
 GitHub Actions allows you to build and deploy Remotely for free from their cloud servers.  Since the Windows agent can only be built on Windows, and the Mac agent can only be built on Mac, using a build platform like GitHub Actions or Azure Pipelines is the only reasonable way to build the whole project.  The definitions for the build processes are located in `/.github/workflows/` folder.
 
 I've created a cross-platform command line tool that can leverage the GitHub Actions REST API to build the project and install it on your private server.  This process will also embed your server's URL into the desktop clients, so that they won't need to prompt the end user to enter it.
+
+Branding will not work for the agent installer or quick support clients (in most cases) unless the server URL is embedded this way.  There is no way for the self-contained EXE to know what server to contact unless it's been compiled into it.
 
 However, you can also choose to install the pre-built packages that do not have any server URLs embedded.  These don't require you to fork the repository on GitHub.
 
@@ -78,6 +85,14 @@ However, you can also choose to install the pre-built packages that do not have 
 - By default, SQLite is used for the database.
     - The "Remotely.db" database file is automatically created in the root folder of your site.
 	- You can browse and modify the contents using [DB Browser for SQLite](https://sqlitebrowser.org/).
+- Create your account by clicking the `Register` button on the main page.
+  - This account will be both the server admin and organization admin.
+  - An organization is automatically created for the account.
+    - Organizations are used to group together users, devices, and other data items into a single pool.
+    - By default, only one organization can exist on a server.
+    - The `Register` button will disappear.
+    - People will no longer be able to create accounts on their own.
+    - To allow self-registration, increase the `MaxOrganizationCount` or set it to -1 (see Configuration section).
 
 ## Upgrading
 * To upgrade a server, do any of the below to copy the new Server application files.
